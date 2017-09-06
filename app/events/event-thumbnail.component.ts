@@ -9,6 +9,12 @@ import {Component, Input, Output, EventEmitter} from '@angular/core'
             <h2>{{event.name}}</h2>
             <div>ID: {{event.id}}</div>
             <div>Cost: {{event.price}} $</div>
+            <div [ngSwitch]="event?.time">
+                Time: {{event?.time}}
+                <span *ngSwitchCase="'8:00 am'">(Early Start)</span>
+                <span *ngSwitchCase="'10:00 am'">(Late Start)</span>
+                <span *ngSwitchDefault>(Normal Start)</span>
+            </div>
             <div [hidden]="!event.location">Location: {{event.location?.city}}</div>
             <div *ngIf="event.onlineUrl">Url: {{event.onlineUrl}}</div>
             <div>
