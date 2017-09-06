@@ -10,4 +10,8 @@ event = {
     name: 'MyEvent',
     cost: 567.89
 }
+handleEventClicked(data){
+    console.log('received: ',  data)
 }
+}
+
