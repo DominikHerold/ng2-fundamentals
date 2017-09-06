@@ -4,14 +4,19 @@ import {Component, Input, Output, EventEmitter} from '@angular/core'
     selector: 'events-thumbnail',
     template: `
     <div class="well hoverwell thumbnail">
-        <h2>{{event.name}}</h2>
-        <div>ID: {{event.id}}</div>
-        <div>Cost: {{event.cost}} $</div>
-        <div>
-            <span>foo</span>
-            <span class="pad-left">bar</span>
-        </div>
-        <button class="btn btn-primary" (click)="handleClickMe()">Klicken</button>
+    <div class="row">        
+        <div *ngFor="let event of events" class="col-md-5">        
+            <h2>{{event.name}}</h2>
+            <div>ID: {{event.id}}</div>
+            <div>Cost: {{event.price}} $</div>
+            <div>
+                <span>foo</span>
+                <span class="pad-left">bar</span>
+            </div>
+        </div>        
+    </div>    
+    
+    <button class="btn btn-primary" (click)="handleClickMe()">Klicken</button>
     </div> 
     `,
     styles: [`
@@ -20,12 +25,12 @@ import {Component, Input, Output, EventEmitter} from '@angular/core'
     `]  
 })
 export class EventThumbnailComponent{
-    @Input() event:any
+    @Input() events:any
     @Output() eventClick = new EventEmitter()
     myVariable:any = "My Secret"
 
     handleClickMe(){
-        this.eventClick.emit(this.event.name)
+        this.eventClick.emit(this.events[0].name)
     }
 
     logFoo(){

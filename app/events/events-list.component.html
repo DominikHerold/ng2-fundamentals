@@ -2,7 +2,7 @@
 <div>
     <h1>Upcoming Events</h1>
     <hr/>
-    <events-thumbnail #thumbnail [event] = "event" (eventClick) = "handleEventClicked($event)"></events-thumbnail>
+    <events-thumbnail #thumbnail [events] = "events" (eventClick) = "handleEventClicked($event)"></events-thumbnail>
     <h3>{{thumbnail.myVariable}}</h3>
     <button class="btn btn-primary" (click)="thumbnail.logFoo()">Klicken für Foo auf console</button>
     <div class="well">
