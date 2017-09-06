@@ -9,7 +9,7 @@ import {Component, Input, Output, EventEmitter} from '@angular/core'
             <h2>{{event.name}}</h2>
             <div>ID: {{event.id}}</div>
             <div>Cost: {{event.price}} $</div>
-            <div *ngIf="event.location">Location: {{event.location?.city}}</div>
+            <div [hidden]="!event.location">Location: {{event.location?.city}}</div>
             <div *ngIf="event.onlineUrl">Url: {{event.onlineUrl}}</div>
             <div>
                 <span>foo</span>
