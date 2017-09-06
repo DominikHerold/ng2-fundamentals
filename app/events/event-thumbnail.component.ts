@@ -9,7 +9,7 @@ import {Component, Input, Output, EventEmitter} from '@angular/core'
             <h2>{{event.name}}</h2>
             <div>ID: {{event.id}}</div>
             <div>Cost: {{event.price}} $</div>
-            <div [ngSwitch]="event?.time">
+            <div [ngClass]="getStartTimeClass(event)" [ngSwitch]="event?.time">
                 Time: {{event?.time}}
                 <span *ngSwitchCase="'8:00 am'">(Early Start)</span>
                 <span *ngSwitchCase="'10:00 am'">(Late Start)</span>
@@ -30,6 +30,8 @@ import {Component, Input, Output, EventEmitter} from '@angular/core'
     styles: [`
         .pad-left { margin-left: 50px;}
         .well div { color: #bbb;}
+        .green {color: #003300 !important;}
+        .bold {font-weight: bold;}
     `]  
 })
 export class EventThumbnailComponent{
@@ -43,5 +45,12 @@ export class EventThumbnailComponent{
 
     logFoo(){
         console.log("foo");
+    }
+
+    getStartTimeClass(data){
+        if (data && data.time === '8:00 am')
+            return ['green', 'bold']
+
+        return []
     }
 }
