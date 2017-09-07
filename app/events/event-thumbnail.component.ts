@@ -1,11 +1,12 @@
 import {Component, Input, Output, EventEmitter} from '@angular/core'
+import {ToastrService} from '../common/toastr.service'
 
 @Component({
     selector: 'events-thumbnail',
     template: `
     <div class="well hoverwell thumbnail">
     <div class="row">        
-        <div *ngFor="let event of events" class="col-md-5">        
+        <div *ngFor="let event of events" class="col-md-5" (click)="toastrClicked(event.name)">        
             <h2>{{event.name}}</h2>
             <div>ID: {{event.id}}</div>
             <div>Cost: {{event.price}} $</div>
@@ -37,6 +38,10 @@ export class EventThumbnailComponent{
     @Output() eventClick = new EventEmitter()
     myVariable:any = "My Secret"
 
+    constructor(private toastrService: ToastrService){
+        
+            }
+
     handleClickMe(){
         this.eventClick.emit(this.events[0].name)
     }
@@ -50,5 +55,9 @@ export class EventThumbnailComponent{
             return {color: '#003300', 'font-weight': 'bold'}
 
         return {}
+    }
+
+    toastrClicked(eventName){
+        this.toastrService.success(eventName)
     }
 }
